@@ -3,7 +3,7 @@
 /** 
  * Humbert Logan - 03/25/2022
  * 
- * Script to list all users
+ * Script to list all users (v2 with dates in french format)
  */
 
  include_once './bibli_generale.php';
@@ -31,11 +31,11 @@
              '<ul>',
                 '<li>Pseudo : ', $user['usPseudo'], '</li>',
                 '<li>Nom : ', $user['usNom'], '</li>',
-                '<li>Inscription : ', $user['usDateInscription'], '</li>',
+                '<li>Inscription : ', hl_date_to_french_format($user['usDateInscription']), '</li>',
                 '<li>Ville : ', $user['usVille'], '</li>',
                 '<li>Web : ', $user['usWeb'], '</li>',
                 '<li>Mail : ', $user['usMail'], '</li>',
-                '<li>Naissance : ', $user['usDateNaissance'], '</li>',
+                '<li>Naissance : ', hl_date_to_french_format($user['usDateNaissance']), '</li>',
                 '<li>Bio : ', $user['usBio'], '</li>',
             '</ul>';
     }

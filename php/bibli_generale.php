@@ -8,9 +8,9 @@
 
  define('IS_DEV', true);
  define('DB_SERVER', 'localhost');
- define('DB_NAME', 'lepetit_cuiteur');
- define('DB_USER', 'lepetit_u');
- define('BD_PASS', 'lepetit_p');
+ define('DB_NAME', 'cuiteur_bd');
+ define('DB_USER', 'cuiteur_userl');
+ define('DB_PASS', 'cuiteur_passl');
 
  /**
   * Function to generate the HTML code to display the start of the page
@@ -162,4 +162,31 @@ function hl_bd_send_request(mysqli $db, string $query): mysqli_result|bool {
         );
         hl_bd_erreur_exit($err);
     }
+}
+
+/**
+ * Convert date to french format (dd month yyyy)
+ * @param string $date The date to convert (yyyymmdd)
+ * @return string The date in french format (dd month yyyy)
+ */
+function hl_date_to_french_format(string $date): string {
+    $year = substr($date, 0, 4);
+    $month = substr($date, 4, 2);
+    $day = substr($date, 6, 2);
+
+    $months = array(
+        '01' => 'janvier',
+        '02' => 'février',
+        '03' => 'mars',
+        '04' => 'avril',
+        '05' => 'mai',
+        '06' => 'juin',
+        '07' => 'juillet',
+        '08' => 'août',
+        '09' => 'septembre',
+        '10' => 'octobre',
+        '11' => 'novembre',
+        '12' => 'décembre'
+    );
+    return $day.' '.$months[$month].' '.$year;
 }
