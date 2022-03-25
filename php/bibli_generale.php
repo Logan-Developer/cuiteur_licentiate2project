@@ -3,34 +3,30 @@
 /** 
  * Humbert Logan - 03/25/2022
  * 
- * Library containing generic methods for the application
+ * Script to list all users
  */
 
-/**
- * Function to generate the beginning of html pages, giving its title and the facultative path to a css file
- */
-hl_aff_debut(string title, string $pathToStyleSheet = ''): void {
-    echo '<!DOCTYPE html>'
-    echo '<html lang="fr">'
-    echo '<head>'
-    echo '<meta charset="utf-8">'
-    echo '<meta http-equiv="X-UA-Compatible" content="IE=edge">'
-    echo '<meta name="viewport" content="width=device-width, initial-scale=1">'
-    echo '<title>' . title . '</title>'
-    echo '<link rel="icon" type="image/x-icon" href="../images/favicon.ico">'
-
-    if (pathToStyleSheet != '') {
-        echo '<link rel="stylesheet" href="' . pathToStyleSheet . '">'
+ /**
+  * Function to generate the HTML code to display the start of the page
+  */
+function hl_aff_debut($titre, $style = '') {
+    echo '<!DOCTYPE html>
+    <html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>' . $titre . '</title>';
+    if ($style != '') {
+        echo '<link rel="stylesheet" href="' . $style . '">';
     }
-
-    echo '</head>'
-    echo '<body>'
+    echo '</head>
+    <body>';
 }
-
 /**
- * Function to generate the end of html pages
- */
-hl_aff_fin(): void {
-    echo '</body>'
-    echo '</html>'
+* Function to generate the HTML code to display the end of the page
+*/
+function hl_aff_fin() {
+    echo '</body>
+    </html>';
 }
