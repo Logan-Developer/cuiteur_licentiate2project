@@ -10,15 +10,16 @@
   * Function to generate the HTML code to display the start of the page
   */
 function hl_aff_debut($titre, $style = '') {
-    echo '<!DOCTYPE html>
-    <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>' . $titre . '</title>';
+    echo '<!DOCTYPE html>',
+    '<html lang="fr">',
+    '<head>',
+        '<meta charset="UTF-8">',
+        '<meta http-equiv="X-UA-Compatible" content="ie=edge">',
+        '<meta name="viewport" content="width=device-width, initial-scale=1.0">',
+        '<title>', $titre, '</title>',
+        '<link rel="icon" type="image/x-icon" href="../images/favicon.ico">';
     if ($style != '') {
-        echo '<link rel="stylesheet" href="' . $style . '">';
+        echo '<link rel="stylesheet" href="../styles/' . $style . '">';
     }
     echo '</head>
     <body>';
