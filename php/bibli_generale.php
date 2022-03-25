@@ -11,7 +11,6 @@
  define('DB_NAME', 'lepetit_cuiteur');
  define('DB_USER', 'lepetit_u');
  define('BD_PASS', 'lepetit_p');
- define('BD_PASS', 'lepetit_p');
 
  /**
   * Function to generate the HTML code to display the start of the page
@@ -97,4 +96,46 @@ function hl_bd_erreur_exit(array $err): void {
         } 
     }
     exit(1);
+}
+
+/**
+ * Open the connection to the database by handling errors
+ * 
+ * If an error occurs, a clean page is displayed with the error message
+ * @return mysqli The connection to the database
+ */
+function hl_bd_connect(): mysqli {
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    try {
+        $conn = mysqli_connect(DB_SERVER, DB_USER, DB_PASS, DB_NAME);
+    }
+    catch (mysqli_sql_exception $e) {
+        $err = array(
+            'code' => $e->getCode(),
+            'message' => $e->getMessage(),
+            'title' => 'Erreur de connexion à la base de données',
+            'others' => array(
+                'Nom du serveur' => DB_SERVER,
+                'Nom de la base de données' => DB_NAME,
+                'Nom d\'utilisateur' => DB_USER,
+                'Mot de passe' => DB_PASS
+            ),
+            'backtrace' => $e->getTraceAsString()
+        );
+        hl_bd_erreur_exit($err);
+    }
+
+    try {
+        mysqli_set_charset($conn, 'utf8');
+        return $conn;
+    }
+    catch (mysqli_sql_exception $e) {
+        $err = array(
+            'code' => $e->getCode(),
+            'title' => 'Erreur lors de la définition du jeu de caractères',
+            'message' => $e->getMessage(),
+            'backtrace' => $e->getTraceAsString()
+        );
+        hl_bd_erreur_exit($err);
+    }
 }
