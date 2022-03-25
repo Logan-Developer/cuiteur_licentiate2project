@@ -9,7 +9,7 @@
 /**
  * Function to generate the beginning of html pages, giving its title and the facultative path to a css file
  */
-hl_aff_debut(title, pathToStyleSheet = '') {
+hl_aff_debut(string title, string pathToStyleSheet = ''): void {
     echo '<!DOCTYPE html>'
     echo '<html lang="fr">'
     echo '<head>'
@@ -30,7 +30,7 @@ hl_aff_debut(title, pathToStyleSheet = '') {
 /**
  * Function to generate the end of html pages
  */
-hl_aff_fin() {
+hl_aff_fin(): void {
     echo '</body>'
     echo '</html>'
 }
