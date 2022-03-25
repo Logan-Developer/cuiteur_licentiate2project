@@ -1,0 +1,349 @@
+/******************************************
+#                                         #
+#                                         #
+#               Style reset               #
+#                                         #
+#                                         #
+******************************************/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+
+
+
+/******************************************
+#                                         #
+#                                         #
+#            Beginning of my style        #
+#                                         #
+#                                         #
+******************************************/
+
+/******************************************
+#                                         #
+#                                         #
+#                  General                #
+#                                         #
+#                                         #
+******************************************/
+/* Main blocs */
+body {
+    background-color: #20190F;
+    color: #E8DBB1;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 14px;
+}
+
+main {
+    width: 800px;
+    height: 880px;
+    margin: auto;
+    background: url('../images/fond.jpg');
+}
+
+header {
+    height: 270px;
+}
+
+aside {
+    width: 250px;
+    height: 450px;
+    float: left;
+}
+
+section {
+    height: 400px;
+}
+
+/* Texts */
+h2, a {
+    font-weight: bold;
+    font-size: 18px;
+    color: #efe7de;
+}
+
+a {
+    color: #3C96F1;
+    text-decoration: none;
+    font-size: 16px;
+    outline: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#                  Header                 #
+#                                         #
+#                                         #
+******************************************/
+header {
+    position: relative;
+    background: url('../images/entete.jpg') no-repeat;
+}
+
+/* Link at the top */
+
+img[src*="deconnexion"] {
+    position: absolute;
+    right: 0;
+    top: 16px;
+}
+
+img[src*="deconnexion"]:hover {
+    content: url('../images/deconnexion_over.png');
+}
+
+img[src*="home"] {
+    position: absolute;
+    right: 210px;
+    top: 80px;
+}
+
+img[src*="home"]:hover {
+    content: url('../images/home_over.png');
+}
+
+img[src*="cherche"] {
+    position: absolute;
+    right: 155px;
+    top: 83px;
+}
+
+img[src*="cherche"]:hover {
+    content: url('../images/cherche_over.png');
+}
+
+img[src*="config"] {
+    position: absolute;
+    right: 95px;
+    top: 83px;
+}
+
+img[src*="config"]:hover {
+    content: url('../images/config_over.png');
+}
+
+/* New message form */
+header form {
+    position: relative;
+}
+
+img[src*="saisie"] {
+    position: absolute;
+    right: 0;
+    top: 130px;
+}
+
+form button[type="submit"] {
+    background: url('../images/haut_parleur.png') no-repeat;
+    cursor: pointer;
+    width: 60px;
+    height: 60px;
+    border: none;
+    position: absolute;
+    top: 65px;
+    right: 5px;
+}
+
+form button[type="submit"]:hover {
+    background: url('../images/haut_parleur_over.png') no-repeat;
+}
+
+img[src*="haut_parleur"]:hover {
+    content: url('../images/haut_parleur_over.png');
+}
+
+header form {
+    position: absolute;
+    top: 158px;
+    right: 10px;
+}
+
+header form textarea{
+    width: 468px;
+    height: 55px;
+    resize: none;
+    color: #7A370D;
+    background-color: #f5f4f4;
+    border-color: #b4b3b3;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#            Information aside            #
+#                                         #
+#                                         #
+******************************************/
+aside {
+    background: url('../images/micro.jpg') no-repeat;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+aside section {
+    height: auto;
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+aside h2, aside p {
+    color: #EFE7DE;
+}
+
+aside h2 {
+    font-size: 18px;
+}
+
+aside section > a {
+    display: block;
+}
+
+.image-box {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.image-box img {
+    margin-right: 10px;
+}
+
+.image-box p,a {
+    align-self: center;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#            Messages section             #
+#                                         #
+#                                         #
+******************************************/
+#messages {
+    float: left;
+    width: 550px;
+    margin-top: 30px;
+}
+
+#messages .image-box img {
+    margin-right: 0;
+}
+
+.message-card {
+    background: url('../images/fond_blabla.png');
+    padding: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.message-card img {
+    float: left;
+    margin-left: -25px;
+    margin-right: 10px;
+    margin-top: 5px;
+    margin-bottom: inherit;
+}
+
+.message-card > p a {
+    font-weight: normal;
+}
+
+.message-card span {
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.message-card span a {
+    font-size: 12px;
+    float: right;
+    margin-left: 35px;
+    opacity: 60%;
+}
+
+.message-card span a:hover {
+    opacity: 100%;
+}
+
+#btn-plus-blablas {
+    float: right;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#                 Footer                  #
+#                                         #
+#                                         #
+******************************************/
+footer {
+    clear: both;
+    position: relative;
+    height: 65px;
+    top: 20px;
+}
+
+footer nav {
+    position: absolute;
+    left: 145px;
+}
+
+footer a {
+    font-size: 12px;
+    font-weight: normal;
+    margin-right: 20px;
+    opacity: 60%;
+}
+
+footer a:hover {
+    opacity: 100%;
+}

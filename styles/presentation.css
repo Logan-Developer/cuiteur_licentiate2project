@@ -1,0 +1,303 @@
+/******************************************
+#                                         #
+#                                         #
+#               Style reset               #
+#                                         #
+#                                         #
+******************************************/
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#                   General               #
+#                                         #
+#                                         #
+******************************************/
+body {
+    background-color: #20190F;
+    color: #E8DBB1;
+    font-family: Verdana, Geneva, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+main {
+    width: 800px;
+    margin: auto;
+    background-image: url('../images/fond.jpg');
+}
+
+h1, h2, h3 {
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 26px 0;
+    border-bottom: 3px solid;
+}
+
+h2 {
+    font-size: 26px;
+    margin: 22px 0;
+}
+
+h3 {
+    font-size: 20px;
+    margin: 18px 0;
+}
+
+p {
+    margin: 16px 32px;
+}
+
+strong {
+    font-weight: bold;
+}
+
+a {
+    color: #3C96F1;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    outline: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+section {
+    clear: both;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#               footer                    #
+#                                         #
+#                                         #
+******************************************/
+footer {
+    clear: both;
+    height: 500px;
+}
+
+footer p {
+    color: #EF9C3B;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    width: 600px;
+}
+
+footer ul {
+    float: right;
+    margin-top: 35px;
+    margin-right: 10px;
+    text-align: right;
+}
+
+#img-dactylo {
+    float: left;
+    margin-left: -60px;
+    margin-right: 20px;
+}
+
+#img-mosquito {
+    float: right;
+    margin-top: 35px;
+    height: 200px;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#               header                    #
+#                                         #
+#                                         #
+******************************************/
+#megaphone {
+    float: right;
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-right: -60px;
+}
+
+#cuiteurophone {
+    float: left;
+    margin-left: -60px;
+    margin-right: 20px;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#           features section              #
+#                                         #
+#                                         #
+******************************************/
+#features div {
+    position: relative;
+    height: 630px;
+}
+
+#features div p {
+    margin: 0;
+}
+
+#img-tel1 {
+    position: absolute;
+    top: 40px;
+}
+
+#img-tel3 {
+    position: absolute;
+    right: 60px;
+}
+
+#img-radio {
+    position: absolute;
+    top: 320px;
+    left: 20px;
+}
+
+#img-tel4 {
+    position: absolute;
+    right: 20px;
+    top: 330px;
+}
+
+#img-cuiteur {
+    position: absolute;
+    left: 80px;
+    top: 230px;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#           security section              #
+#                                         #
+#                                         #
+******************************************/
+#img-security {
+    float: right;
+    margin-left: 20px;
+    margin-right: -60px;
+}
+
+#security div {
+    position: relative;
+}
+
+#security div p {
+    position: absolute;
+    background-color: rgba(32, 25, 15, 0.7);
+    font-weight: bold;
+    margin: 100px 30px;
+    padding: 60px 30px 120px 30px;
+    top: -100px;
+    right: -30px;
+    width: 42%;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#           techniques section            #
+#                                         #
+#                                         #
+******************************************/
+.server {
+    text-align: center;
+    width: 250px;
+    margin: 10px 75px;
+    float: left;
+}
+
+#p-servers {
+    clear: both;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#                Moyens                   #
+#                                         #
+#                                         #
+******************************************/
+#banner-moyens {
+    position: fixed;
+    width: inherit;
+    height: 80px;
+    background-color: rgba(32, 25, 15, 0.7);
+}
+
+#banner-moyens h1{
+    margin: 0;
+}
+
+#banner-moyens a {
+    float: right;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.moyens {
+    margin: auto;
+    text-align: center;
+    padding: 80px;
+}
+
+.moyens h2 {
+    margin: 0;
+}

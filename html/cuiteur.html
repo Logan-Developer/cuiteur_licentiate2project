@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuiteur</title>
+    <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+    <link rel="stylesheet" href="../styles/cuiteur.css">
+</head>
+<body>
+    <main>
+        <!-- Top of the page with nav buttons -->
+        <header>
+            <nav>
+                <a title="Se déconnecter de cuiteur" href="../index.html"><img src="../images/deconnexion.png" alt="Bouton déconnexion"></a>
+                <a title="Ma page d'accueil" href="../index.html"><img src="../images/home.png" alt="Bouton accueil"></a>
+                <a title="Rechercher des personnes à suivre" href="../index.html"><img src="../images/cherche.png" alt="Bouton recherche"></a>
+                <a title="Modifier mes informations personnelles" href="../index.html"><img src="../images/config.png" alt="Bouton profile"></a>
+            </nav>
+
+            <img src="../images/saisie.png" alt="Fond saisie message">
+            <form method="post" action="../index.html">
+                <textarea></textarea>
+                <button title="Publier mon message" type="submit"></button>
+            </form>
+        </header>
+
+
+        <!-- Information on the left side of the page -->
+        <aside>
+            <section>
+                <h2>Utilisateur</h2>
+                <div class="image-box">
+                    <img src="../images/pdac.jpg" alt="Photo profile">
+                    <p><a title="Voir mes infos" href="../index.html">pdac</a> Pierre Dac</p>
+                </div>
+
+                <a title="Voir la liste des mes messages" href="../index.html">100 blablas</a>
+                <a title="Voir les personnes que je suis" href="../index.html">123 abonnements</a>
+                <a title="Voir les personnes qui me suivent" href="../index.html">34 abonnés</a>
+            </section>
+
+            <section>
+                <h2>Tendances</h2>
+                <p># <a title="Voir les messages contenant ce tag" href="../index.html">info</a></p>
+                <p># <a title="Voir les messages contenant ce tag" href="../index.html">lol</a></p>
+                <p># <a title="Voir les messages contenant ce tag" href="../index.html">imbécile</a></p>
+                <p># <a title="Voir les messages contenant ce tag" href="../index.html">fairelafete</a></p>
+
+                <a href="../index.html">Toutes les tendances</a>
+            </section>
+
+            <section>
+                <h2>Suggestions</h2>
+                <div class="image-box">
+                    <img src="../images/yoda.jpg" alt="Photo profile utilisateur suggéré">
+                    <p><a title="Voir les infos" href="../index.html">yoda</a> Yoda</p>
+                </div>
+
+                <div class="image-box">
+                    <img src="../images/paulo.jpg" alt="Photo profile utilisateur suggéré">
+                    <p><a title="Voir les infos" href="../index.html">paulo</a> Jean-Paul Sartre</p>
+                </div>
+
+                <a href="../index.html">Plus de suggestions</a>
+            </section>
+        </aside>
+
+
+
+        <!-- Latest messages section -->
+        <ul id="messages">
+            <li class="message-card">
+                <img src="../images/albert.jpg" alt="Photo profile">
+                <h3><a href="../index.html">albert</a> Albert Einstein</h3>
+
+                <p>Théorème de McLuhan : grâce à l'ordinateur, on peut faire plus<br>
+                    rapidement des choses qu'on n'aurait pas eu besoin de faire sans<br>
+                    ordinateur. # <a title="Voir les messages contenant ce tag" href="../index.html">info</a><br>
+                
+                    <span>Il y a environ 10 minutes.<a href="../index.html">Répondre</a><a href="../index.html">Recuiter</a></span>
+                </p>   
+            </li>
+
+            <li class="message-card">
+                <img src="../images/woody.jpg" alt="Photo profile">
+                <h3><a href="../index.html">woody</a> Woody Allen</h3>
+
+                <p>@<a title="Voir les infos" href="../index.html">chomsky</a> L'avantage d'être intelligent, c'est qu'on peut toujours<br>
+                    faire l'#<a title="Voir les messages contenant ce tag" href="../index.html">imbécile</a>, alors que l'inverse est totalement impossible. 
+                    #<a title="Voir les messages contenant ce tag" href="../index.html">lol</a><br>
+                
+                    <span>Il y a 1 jour.<a href="../index.html">Répondre</a><a href="../index.html">Recuiter</a></span>
+                </p>   
+            </li>
+
+            <li class="message-card">
+                <img src="../images/albert.jpg" alt="Photo profile">
+                <h3><a href="../index.html">albert</a> Albert Einstein</h3>
+
+                <p>Théorème de McLuhan : grâce à l'ordinateur, on peut faire plus<br>
+                    rapidement des choses qu'on n'aurait pas eu besoin de faire sans<br>
+                    ordinateur. # <a title="Voir les messages contenant ce tag" href="../index.html">info</a><br>
+                
+                    <span>Il y a environ 10 minutes.<a href="../index.html">Répondre</a><a href="../index.html">Recuiter</a></span>
+                </p>   
+            </li>
+
+            <li class="message-card">
+                <img src="../images/woody.jpg" alt="Photo profile">
+                <h3><a href="../index.html">woody</a> Woody Allen</h3>
+
+                <p>@<a title="Voir les infos" href="../index.html">chomsky</a> L'avantage d'être intelligent, c'est qu'on peut toujours<br>
+                    faire l'#<a title="Voir les messages contenant ce tag" href="../index.html">imbécile</a>, alors que l'inverse est totalement impossible. 
+                    #<a title="Voir les messages contenant ce tag" href="../index.html">lol</a><br>
+                
+                    <span>Il y a 1 jour.<a href="../index.html">Répondre</a><a href="../index.html">Recuiter</a></span>
+                </p>   
+            </li>
+
+            <li>
+                <div id="btn-plus-blablas" class="image-box">
+                    <a href="../index.html">Plus de blablas</a>
+                    <img src="../images/speaker.png" alt="Illustration speaker">
+                </div>
+            </li>
+        </ul>
+
+
+
+
+        <footer>
+            <nav>
+                <a href="../index.html">A propos</a>
+                <a href="../index.html">Publicité</a>
+                <a href="../index.html">Patati</a>
+                <a href="../index.html">Aide</a>
+                <a href="../index.html">Patata</a>
+                <a href="../index.html">Stages</a>
+                <a href="../index.html">Emplois</a>
+                <a href="../index.html">Confidentialité</a>
+            </nav>
+            <img src="../images/pied.png" alt="Illustration pied de page">
+        </footer>
+    </main>
+</body>
+</html>
