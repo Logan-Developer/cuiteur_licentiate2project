@@ -139,3 +139,27 @@ function hl_bd_connect(): mysqli {
         hl_bd_erreur_exit($err);
     }
 }
+
+/**
+ * Send a query to the database
+ * @param mysqli $db The connection to the database
+ * @param string $query The sql query to send
+ * @return mysqli_result The result of the query
+ */
+function hl_bd_send_request(mysqli $db, string $query): mysqli_result|bool {
+    try {
+        return mysqli_query($db, $query);
+    }
+    catch (mysqli_sql_exception $e) {
+        $err = array(
+            'code' => $e->getCode(),
+            'title' => 'Erreur lors de l\'envoi de la requête',
+            'message' => $e->getMessage(),
+            'backtrace' => $e->getTraceAsString(),
+            'others' => array(
+                'Requête' => $query
+            )
+        );
+        hl_bd_erreur_exit($err);
+    }
+}
