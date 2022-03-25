@@ -7,7 +7,7 @@
  */
 
 /**
- * Function to generate the beginning of html pages
+ * Function to generate the beginning of html pages, giving its title and the facultative path to a css file
  */
 hl_aff_debut(title, pathToStyleSheet = '') {
     echo '<!DOCTYPE html>'
@@ -25,4 +25,12 @@ hl_aff_debut(title, pathToStyleSheet = '') {
 
     echo '</head>'
     echo '<body>'
+}
+
+/**
+ * Function to generate the end of html pages
+ */
+hl_aff_fin() {
+    echo '</body>'
+    echo '</html>'
 }
