@@ -6,8 +6,8 @@
  * Script to list all users
  */
 
- include_once './php/bibli_generale.php';
- include_once './php/bibli_cuiteur.php';
+ include_once './bibli_generale.php';
+ include_once './bibli_cuiteur.php';
 
  hl_aff_debut('Liste des utilisateurs');
 
