@@ -43,6 +43,7 @@ function hl_aff_messages_list(mysqli $db, mysqli_result $data, array $blablasUse
                 '</p>',
              '</li>';
     } while ($blablasUser2 = mysqli_fetch_assoc($data));
+    echo '</ul>';
 }
 
 $conn = hl_bd_connect();
@@ -60,5 +61,5 @@ hl_aff_messages_list($conn, $data, $blablasUser2);
 mysqli_free_result($data);
 mysqli_close($conn);
 
-echo '</main>';
+hl_aff_pied();
 hl_aff_fin();

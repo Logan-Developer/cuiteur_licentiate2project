@@ -112,3 +112,24 @@ include_once './bibli_generale.php';
             '</section>',
           '</aside>';
   }
+
+  /**
+   * Generate the HTML code to display the footer of the page
+   * @return void
+   */
+  function hl_aff_pied(): void {
+    echo '<footer>',
+            '<nav>',
+              '<a href="../index.html">A propos</a>',
+              '<a href="../index.html">Publicité</a>',
+              '<a href="../index.html">Patati</a>',
+              '<a href="../index.html">Aide</a>',
+              '<a href="../index.html">Patata</a>',
+              '<a href="../index.html">Stages</a>',
+              '<a href="../index.html">Emplois</a>',
+              '<a href="../index.html">Confidentialité</a>',
+            '</nav>',
+            '<img src="../images/pied.png" alt="Illustration pied de page">',
+          '</footer>',
+        '</main>';
+  }
