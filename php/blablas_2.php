@@ -35,9 +35,9 @@ function hl_aff_messages_list(mysqli $db, mysqli_result $data, array $blablasUse
         else {
             echo '<img src="../images/anonyme.jpg" alt="Photo profile">';
         }
-        echo     '<h3>' . $blablasUser2['usPseudo'] . ' ' . $blablasUser2['usNom'] . '</h3>',
-                 '<p>' . $blablasUser2['blTexte'] . '<br>',
-                    '<span>' . hl_date_to_french_format($blablasUser2['blDate']) . ' à ' . hl_time_to_more_readable_format($blablasUser2['blHeure']),
+        echo     '<h3>', $blablasUser2['usPseudo'], ' ', $blablasUser2['usNom'], '</h3>',
+                 '<p>', $blablasUser2['blTexte'], '<br>',
+                    '<span>', hl_date_to_french_format($blablasUser2['blDate']), ' à ', hl_time_to_more_readable_format($blablasUser2['blHeure']),
                         '<a href="../index.html">Répondre</a><a href="../index.html">Recuiter</a>',
                     '</span>',
                 '</p>',

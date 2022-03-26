@@ -61,7 +61,7 @@ include_once './bibli_generale.php';
               }
               else {
                 echo '<div id="title">',
-                        '<h1>' . $title . '</h1>',
+                        '<h1>', $title, '</h1>',
                         '<img src="../images/trait.png" alt="Bordure titre">',
                       '</div>';
               }

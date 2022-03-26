@@ -28,9 +28,9 @@ do {
 
     echo '<ul>',
             '<li>',
-                $blablasUser2['usPseudo'] . ' ' . $blablasUser2['usNom'] . '<br>',
-                $blablasUser2['blTexte'] . '<br>',
-                hl_date_to_french_format($blablasUser2['blDate']) . ' à ' . hl_time_to_more_readable_format($blablasUser2['blHeure']) . '<br>',
+                $blablasUser2['usPseudo'], ' ' . $blablasUser2['usNom'], '<br>',
+                $blablasUser2['blTexte'], '<br>',
+                hl_date_to_french_format($blablasUser2['blDate']), ' à ', hl_time_to_more_readable_format($blablasUser2['blHeure']), '<br>',
             '</li>',
         '</ul>';
 } while ($blablasUser2 = mysqli_fetch_assoc($data));
