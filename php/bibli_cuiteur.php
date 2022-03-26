@@ -28,7 +28,7 @@ include_once './bibli_generale.php';
       // neutralize the user_id
         $user_id = mysqli_real_escape_string($db, $user_id);
 
-      $query = 'SELECT users.usPseudo, users.usNom, users.usAvecPhoto, blablas.*, ORI.usPseudo AS usPseudoOri
+      $query = 'SELECT users.usPseudo, users.usNom, users.usAvecPhoto, blablas.*, ORI.usPseudo AS usPseudoOri, ORI.usNom AS usNomOri
                 FROM (blablas INNER JOIN users ON blIDAuteur = users.usID)
                 LEFT OUTER JOIN users AS ORI ON blIDAutOrig = ORI.usID
                 WHERE blIDAuteur = ' . $user_id . '
