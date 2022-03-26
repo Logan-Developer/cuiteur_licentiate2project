@@ -190,3 +190,14 @@ function hl_date_to_french_format(string $date): string {
     );
     return $day.' '.$months[$month].' '.$year;
 }
+
+/**
+ * Convert time from HH:MM:SS to HHhmn
+ * @param string $time The time to convert (HH:MM:SS)
+ * @return string The converted time (HHhmn)
+ */
+function hl_time_to_more_readable_format(string $time): string {
+    $hours = substr($time, 0, 2);
+    $minutes = substr($time, 3, 2);
+    return $hours.'h'.$minutes . 'mn';
+}
