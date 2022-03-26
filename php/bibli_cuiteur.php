@@ -66,3 +66,48 @@ include_once './bibli_generale.php';
               }
       echo  '</header>';
   }
+
+  /**
+   * Generate the HTML code to display aside of the page with info about the user, tendances, suggestions
+   * @return void
+   */
+  function hl_aff_infos(): void {
+    echo '<aside>',
+            '<section>',
+              '<h2>Utilisateur</h2>',
+              '<div class=image-box">',
+                '<img src="../images/pdac.jpg" alt="Photo profile">',
+                '<p><a title="Voir mes infos" href="../index.html">pdac</a> Pierre Dac</p>',
+              '</div>',
+
+              '<a title="Voir la liste des mes messages" href="../index.html">100 blablas</a>',
+              '<a title="Voir les personnes que je suis" href="../index.html">123 abonnements</a>',
+              '<a title="Voir les personnes qui me suivent" href="../index.html">34 abonnés</a>',
+            '</section>',
+
+            '<section>',
+              '<h2>Tendances</h2>',
+              '<p># <a title="Voir les messages contenant ce tag" href="../index.html">info</a></p>',
+              '<p># <a title="Voir les messages contenant ce tag" href="../index.html">lol</a></p>',
+              '<p># <a title="Voir les messages contenant ce tag" href="../index.html">imbécile</a></p>',
+              '<p># <a title="Voir les messages contenant ce tag" href="../index.html">fairelafete</a></p>',
+
+              '<a href="../index.html">Toutes les tendances</a>',
+            '</section>',
+
+            '<section>',
+              '<h2>Suggestions</h2>',
+              '<div class="image-box">',
+                '<img src="../images/yoda.jpg" alt="Photo profile utilisateur suggéré">',
+                '<p><a title="Voir les infos" href="../index.html">yoda</a> Yoda</p>',
+              '</div>',
+
+              '<div class="image-box">',
+                '<img src="../images/paulo.jpg" alt="Photo profile utilisateur suggéré">',
+                '<p><a title="Voir les infos" href="../index.html">paulo</a> Jean-Paul Sartre</p>',
+              '</div>',
+
+              '<a href="../index.html">Plus de suggestions</a>',
+            '</section>',
+          '</aside>';
+  }
