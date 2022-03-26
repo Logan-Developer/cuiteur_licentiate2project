@@ -13,7 +13,7 @@ hl_aff_debut('Liste des utilisateurs');
 
 echo '<h1>Liste des utilisateurs</h1>';
 $conn = hl_bd_connect();
-$users = hl_bd_get_users($conn);
+$users = hl_aff_users($conn);
 
 while($user = mysqli_fetch_assoc($users)) {
    // neutralize the eventual HTML code in the fields

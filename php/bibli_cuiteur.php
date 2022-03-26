@@ -13,7 +13,7 @@ include_once './bibli_generale.php';
   * @param mysqli $db_link The database link
   * @return mysqli_result The list of users
   */
-  function hl_bd_get_users(mysqli $db): mysqli_result {
+  function hl_aff_users(mysqli $db): mysqli_result {
       $query = 'SELECT * FROM users';
       return hl_bd_send_request($db, $query);
   }
@@ -24,7 +24,7 @@ include_once './bibli_generale.php';
    * @param int $user_id The id of the user
    * @return mysqli_result The list of blablas
    */
-  function hl_bd_get_blablas_of_user(mysqli $db, int $user_id): mysqli_result {
+  function hl_aff_blablas(mysqli $db, int $user_id): mysqli_result {
       // neutralize the user_id
         $user_id = mysqli_real_escape_string($db, $user_id);
 

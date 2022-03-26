@@ -10,7 +10,7 @@ include_once './bibli_generale.php';
 include_once './bibli_cuiteur.php';
 
 $conn = hl_bd_connect();
-$data = hl_bd_get_blablas_of_user($conn, 2);
+$data = hl_aff_blablas($conn, 2);
 
 $blablasUser2 = mysqli_fetch_assoc($data);
 $blablasUser2['usPseudo'] = htmlspecialchars($blablasUser2['usPseudo']);
