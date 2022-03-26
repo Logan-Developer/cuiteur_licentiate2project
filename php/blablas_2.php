@@ -11,6 +11,10 @@ include_once './bibli_cuiteur.php';
 
 /**
  * Generate the list of messages posted or reposted by user of id 2
+ * @param mysqli $conn database connection
+ * @param mysqli_result $data list of messages posted or reposted by user of id 2
+ * @param array $blablasUser2 array containing the first row of the result
+ * @return string HTML code of the list of messages posted or reposted by user of id 2
  */
 function hl_aff_messages_list(mysqli $db, mysqli_result $data, array $blablasUser2) {
     echo '<ul id="messages">';
