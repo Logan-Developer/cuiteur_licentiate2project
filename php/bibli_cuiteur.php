@@ -29,9 +29,9 @@ include_once './bibli_generale.php';
         $user_id = mysqli_real_escape_string($db, $user_id);
 
       $query = 'SELECT users.usPseudo, users.usNom, users.usAvecPhoto, blablas.*, ORI.usPseudo AS usPseudoOri, ORI.usNom AS usNomOri
-                FROM (blablas INNER JOIN users ON blIDAuteur = users.usID)
+                FROM (users LEFT OUTER JOIN blablas ON blIDAuteur = users.usID)
                 LEFT OUTER JOIN users AS ORI ON blIDAutOrig = ORI.usID
-                WHERE blIDAuteur = ' . $user_id . '
+                WHERE users.usID = ' . $user_id . '
                 ORDER BY blDate DESC, blHeure DESC';
       return hl_bd_send_request($db, $query);
   }

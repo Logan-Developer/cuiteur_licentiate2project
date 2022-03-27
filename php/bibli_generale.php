@@ -201,3 +201,56 @@ function hl_time_to_more_readable_format(string $time): string {
     $minutes = substr($time, 3, 2);
     return $hours.'h'.$minutes . 'mn';
 }
+
+/**
+ * Display errors in a clean page
+ * @param array $err The error to display
+ * - code: The error code
+ * - title: The error title
+ * - message: The error message
+ * - others: The other error details
+ * @return void
+ */
+function hl_aff_erreur_exit(array $err) {
+    ob_end_clean();
+    hl_aff_debut('Erreur');
+
+    echo '<h4>Une erreur est survenue</h4>',
+         '<p>Nous sommes désolés de cette situation. Merci de réessayer ultérieurement.</p>';
+
+    if (IS_DEV) {
+        echo '<pre>',
+                '<strong>Erreur :</strong> ',
+                $err['title'],
+                '<br>',
+                '<strong>Message :</strong> ',
+                $err['message'];
+        if (isset($err['others'])) {
+            echo '<br>',
+                 '<strong>Autres informations :</strong> ',
+                 '<br>';
+            foreach($err['others'] as $key => $value){
+                echo '<strong>'.$key.' :</strong> ', $value, '<br>';
+            }
+        }
+        echo '</pre>';
+    }
+    hl_aff_fin();
+
+    // Save info in log file
+    if (!IS_DEV) {
+        $file = fopen('error.log', 'a');
+        if($file){
+            fwrite($file, '['.date('d/m/Y').' '.date('H:i:s')."]\n");
+            fwrite($file, $err['title']."\n");
+            fwrite($file, utf8_encode($err['message'])."\n");
+            if (isset($err['others'])){
+                foreach($err['others'] as $key => $value){
+                    fwrite($file,"{$key} :\n{$value}\n");
+                }
+            }
+            fclose($file);
+        }
+    }
+    exit(1);
+}
