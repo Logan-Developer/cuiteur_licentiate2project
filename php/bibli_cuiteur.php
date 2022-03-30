@@ -9,31 +9,65 @@
 include_once './bibli_generale.php';
 
  /**
-  * Retrieve the list of users from users table of the cuiteur database
+  * Retrieve the list of users from users table of the cuiteur database and display it
   * @param mysqli $db_link The database link
-  * @return mysqli_result The list of users
+  * @param bool $datesInFrenchFormat If true, the dates are displayed in french format, otherwise YYYYMMDD  (default: false)
+  * @return void
   */
-  function hl_aff_users(mysqli $db): mysqli_result {
+  function hl_aff_users(mysqli $db, bool $datesInFrenchFormat = false) {
       $query = 'SELECT * FROM users';
-      return hl_bd_send_request($db, $query);
+
+      $users = hl_bd_send_request($db, $query);
+
+      while($user = mysqli_fetch_assoc($users)) {
+        // neutralize the eventual HTML code in the fields
+        $user['usID'] = htmlspecialchars($user['usID']);
+        $user['usPseudo'] = htmlspecialchars($user['usPseudo']);
+        $user['usNom'] = htmlspecialchars($user['usNom']);
+        $user['usDateInscription'] = htmlspecialchars($user['usDateInscription']);
+        $user['usVille'] = htmlspecialchars($user['usVille']);
+        $user['usWeb'] = htmlspecialchars($user['usWeb']);
+        $user['usMail'] = htmlspecialchars($user['usMail']);
+        $user['usDateNaissance'] = htmlspecialchars($user['usDateNaissance']);
+        $user['usBio'] = htmlspecialchars($user['usBio']);
+
+        if ($datesInFrenchFormat) {
+          $user['usDateInscription'] = hl_date_to_french_format($user['usDateInscription']);
+          $user['usDateNaissance'] = hl_date_to_french_format($user['usDateNaissance']);
+        }
+     
+        echo '<h2>Utilisateur ', $user['usID'], '</h2>',
+           '<ul>',
+              '<li>Pseudo : ', $user['usPseudo'], '</li>',
+              '<li>Nom : ', $user['usNom'], '</li>',
+              '<li>Inscription : ', $user['usDateInscription'], '</li>',
+              '<li>Ville : ', $user['usVille'], '</li>',
+              '<li>Web : ', $user['usWeb'], '</li>',
+              '<li>Mail : ', $user['usMail'], '</li>',
+              '<li>Naissance : ', $user['usDateNaissance'], '</li>',
+              '<li>Bio : ', $user['usBio'], '</li>',
+           '</ul>';
+      }
+      mysqli_free_result($users);
   }
 
   /**
-   * Retrieve the list of blablas posted by user (including reposts) of id $user_id from blablas table of the cuiteur database
+   * Retrieve the list of blablas posted by user (including reposts) of id $user_id from blablas table of the cuiteur database and display it
    * @param mysqli $db_link The database link
    * @param int $user_id The id of the user
-   * @return mysqli_result The list of blablas
+   * @return void
    */
-  function hl_aff_blablas(mysqli $db, int $user_id): mysqli_result {
+  function hl_aff_blablas(mysqli $db, int $user_id): void {
       // neutralize the user_id
-        $user_id = mysqli_real_escape_string($db, $user_id);
+      $user_id = mysqli_real_escape_string($db, $user_id);
 
       $query = 'SELECT users.usPseudo, users.usNom, users.usAvecPhoto, blablas.*, ORI.usPseudo AS usPseudoOri, ORI.usNom AS usNomOri
                 FROM (users LEFT OUTER JOIN blablas ON blIDAuteur = users.usID)
                 LEFT OUTER JOIN users AS ORI ON blIDAutOrig = ORI.usID
                 WHERE users.usID = ' . $user_id . '
                 ORDER BY blDate DESC, blHeure DESC';
-      return hl_bd_send_request($db, $query);
+
+    
   }
 
   /**
