@@ -19,6 +19,19 @@ function hl_get_users(mysqli $bd): mysqli_result {
 }
 
 /**
+ * Get pseudo of the user with the specified id
+ * @param mysqli $bd the database connection
+ * @param int $id the id of the user
+ * @return string the pseudo of the user
+ */
+function hl_get_user_pseudo(mysqli $bd, int $id): string {
+    $query = "SELECT `usPseudo` FROM `users` WHERE `usID` = $id";
+    $result = mysqli_query($bd, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['usPseudo'];
+}
+
+/**
  * Retrieve the list of messages posted by a user from the database
  * @param mysqli $bd the database connection
  * @param int $user_id the user id
@@ -32,6 +45,27 @@ function hl_get_blablas_from_user(mysqli $bd, int $user_id): mysqli_result {
               FROM (users LEFT OUTER JOIN blablas ON blIDAuteur = users.usID)
               LEFT OUTER JOIN users AS ORI ON blIDAutOrig = ORI.usID
               WHERE users.usID = ' . $user_id . '
+              ORDER BY blDate DESC, blHeure DESC';
+    return mysqli_query($bd, $query);
+}
+
+/**
+ * Retrieve the list of messages of a user's feed from the database (all messages posted by the user, posted by the user's followers, and the messages that mention the user)
+ * @param mysqli $bd the database connection
+ * @param int $user_id the user id
+ * @param string $user_pseudo the user pseudo
+ * @return mysqli_result the list of messages of a user's feed
+ */
+function hl_get_blablas_feed(mysqli $bd, int $user_id, $user_pseudo): mysqli_result {
+    // neutralize the user_id
+    $user_id = mysqli_real_escape_string($bd, $user_id);
+
+    $query = 'SELECT users.usPseudo, users.usNom, users.usAvecPhoto, blablas.*, ORI.usPseudo AS usPseudoOri, ORI.usNom AS usNomOri
+              FROM (users LEFT OUTER JOIN blablas ON blIDAuteur = users.usID)
+              LEFT OUTER JOIN users AS ORI ON blIDAutOrig = ORI.usID
+              WHERE users.usID = ' . $user_id . '
+              OR users.usID IN (SELECT eaIDAbonne FROM estabonne WHERE eaIDUser = ' . $user_id . ')
+              OR blTexte LIKE "%@' . $user_pseudo . '%"
               ORDER BY blDate DESC, blHeure DESC';
     return mysqli_query($bd, $query);
 }
@@ -81,7 +115,11 @@ function hl_get_blablas_from_user(mysqli $bd, int $user_id): mysqli_result {
  * @param array $blablasUser array containing the first row of the result
  * @return string HTML code of the list of messages posted or reposted by user
  */
-function hl_aff_blablas(mysqli_result $data, array $blablasUser) {
+function hl_aff_blablas(mysqli_result $data, array $blablasUser = null) {
+  if ($blablasUser == null) {
+    $blablasUser = mysqli_fetch_assoc($data); // get the first row of the result if it is not provided
+  }
+
   echo '<ul id="messages">';
        
   do {
