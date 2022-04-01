@@ -8,17 +8,41 @@
 
 include_once './bibli_generale.php';
 
+/**
+ * Retrieve the list of users from the database
+ * @param mysqli $bd the database connection
+ * @return mysqli_result the list of users
+ */
+function hl_get_users(mysqli $bd): mysqli_result {
+    $query = "SELECT * FROM `users`";
+    return mysqli_query($bd, $query);
+}
+
+/**
+ * Retrieve the list of messages posted by a user from the database
+ * @param mysqli $bd the database connection
+ * @param int $user_id the user id
+ * @return mysqli_result the list of messages posted by the user
+ */
+function hl_get_blablas_from_user(mysqli $bd, int $user_id): mysqli_result {
+    // neutralize the user_id
+    $user_id = mysqli_real_escape_string($bd, $user_id);
+
+    $query = 'SELECT users.usPseudo, users.usNom, users.usAvecPhoto, blablas.*, ORI.usPseudo AS usPseudoOri, ORI.usNom AS usNomOri
+              FROM (users LEFT OUTER JOIN blablas ON blIDAuteur = users.usID)
+              LEFT OUTER JOIN users AS ORI ON blIDAutOrig = ORI.usID
+              WHERE users.usID = ' . $user_id . '
+              ORDER BY blDate DESC, blHeure DESC';
+    return mysqli_query($bd, $query);
+}
+
  /**
-  * Retrieve the list of users from users table of the cuiteur database and display it
+  * Display the users information
   * @param mysqli $db_link The database link
   * @param bool $datesInFrenchFormat If true, the dates are displayed in french format, otherwise YYYYMMDD  (default: false)
   * @return void
   */
-  function hl_aff_users(mysqli $db, bool $datesInFrenchFormat = false) {
-      $query = 'SELECT * FROM users';
-
-      $users = hl_bd_send_request($db, $query);
-
+  function hl_aff_users(mysqli_result $users, bool $datesInFrenchFormat = false) {
       while($user = mysqli_fetch_assoc($users)) {
         // neutralize the eventual HTML code in the fields
         $user['usID'] = htmlspecialchars($user['usID']);
@@ -52,23 +76,63 @@ include_once './bibli_generale.php';
   }
 
   /**
-   * Retrieve the list of blablas posted by user (including reposts) of id $user_id from blablas table of the cuiteur database and display it
-   * @param mysqli $db_link The database link
-   * @param int $user_id The id of the user
-   * @return void
-   */
-  function hl_aff_blablas(mysqli $db, int $user_id): void {
-      // neutralize the user_id
-      $user_id = mysqli_real_escape_string($db, $user_id);
+ * Generate the list of messages posted or reposted by user
+ * @param mysqli_result $data list of messages posted or reposted by user
+ * @param array $blablasUser array containing the first row of the result
+ * @return string HTML code of the list of messages posted or reposted by user
+ */
+function hl_aff_blablas(mysqli_result $data, array $blablasUser) {
+  echo '<ul id="messages">';
+       
+  do {
+      // neutralize the eventual HTML code in the fields
+      $blablasUser['usPseudo'] = htmlspecialchars($blablasUser['usPseudo']);
+      $blablasUser['usNom'] = htmlspecialchars($blablasUser['usNom']);
+      $blablasUser['blTexte'] = htmlspecialchars($blablasUser['blTexte']);
+      $blablasUser['blDate'] = htmlspecialchars($blablasUser['blDate']);
+      $blablasUser['blHeure'] = htmlspecialchars($blablasUser['blHeure']);
+      $blablasUser['usAvecPhoto'] = htmlspecialchars($blablasUser['usAvecPhoto']);
 
-      $query = 'SELECT users.usPseudo, users.usNom, users.usAvecPhoto, blablas.*, ORI.usPseudo AS usPseudoOri, ORI.usNom AS usNomOri
-                FROM (users LEFT OUTER JOIN blablas ON blIDAuteur = users.usID)
-                LEFT OUTER JOIN users AS ORI ON blIDAutOrig = ORI.usID
-                WHERE users.usID = ' . $user_id . '
-                ORDER BY blDate DESC, blHeure DESC';
+      // Default photo if user has no photo uploaded
+      echo '<li class="message-card">';
+      if (!$blablasUser['usAvecPhoto']) {
+          echo '<img src="../images/anonyme.jpg" alt="Photo profile">';
+      }
 
-    
-  }
+      // User's info for reposted messages
+      if ($blablasUser['blIDAutOrig'] != null) {
+          if ($blablasUser['usAvecPhoto']) {
+              echo '<img src="../upload/' . $blablasUser['blIDAutOrig'] . '.jpg" alt="Photo profile">';
+          }
+
+          echo    '<h3>',
+                      '<a href="utilisateur.php?id=' . $blablasUser['blIDAutOrig'] . '">' . $blablasUser['usPseudoOri'] . '</a>',
+                      ' ', $blablasUser['usNomOri'],
+                      ', recuité par <a href="utilisateur.php?id=', $blablasUser['blIDAuteur'], '">', $blablasUser['usPseudo'], '</a>';
+                  '</h3>';
+      }
+
+      // User's info for original messages
+      else {
+          if ($blablasUser['usAvecPhoto']) {
+              echo '<img src="../upload/' . $blablasUser['blIDAuteur'] . '.jpg" alt="Photo profile">';
+          }
+
+          echo    '<h3>',
+                      '<a href="utilisateur.php?id=' . $blablasUser['blIDAuteur'] . '">' . $blablasUser['usPseudo'] . '</a>',
+                      ' ', $blablasUser['usNom'],
+                  '</h3>';
+      }
+
+      echo    '<p>', $blablasUser['blTexte'], '<br>',
+                  '<span>', hl_date_to_french_format($blablasUser['blDate']), ' à ', hl_time_to_more_readable_format($blablasUser['blHeure']),
+                      '<a href="../index.html">Répondre</a><a href="../index.html">Recuiter</a>',
+                  '</span>',
+              '</p>',
+           '</li>';
+  } while ($blablasUser = mysqli_fetch_assoc($data));
+  echo '</ul>';
+}
 
   /**
    * Generate the HTML code to display the header of the page, including or not the add blabla form

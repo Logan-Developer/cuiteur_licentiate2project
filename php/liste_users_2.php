@@ -13,6 +13,7 @@ hl_aff_debut('Liste des utilisateurs');
 
 echo '<h1>Liste des utilisateurs</h1>';
 $conn = hl_bd_connect();
-hl_aff_users($conn, true);
+$users = hl_get_users($conn);
+hl_aff_users($users, true);
 
 hl_aff_fin();
