@@ -61,11 +61,12 @@ function hl_get_blablas_feed(mysqli $bd, int $user_id, $user_pseudo): mysqli_res
     $user_id = mysqli_real_escape_string($bd, $user_id);
 
     $query = 'SELECT users.usPseudo, users.usNom, users.usAvecPhoto, blablas.*, ORI.usPseudo AS usPseudoOri, ORI.usNom AS usNomOri
-              FROM (users LEFT OUTER JOIN blablas ON blIDAuteur = users.usID)
-              LEFT OUTER JOIN users AS ORI ON blIDAutOrig = ORI.usID
+              FROM ((users LEFT OUTER JOIN blablas ON blIDAuteur = users.usID)
+              LEFT OUTER JOIN users AS ORI ON blIDAutOrig = ORI.usID)
+              LEFT OUTER JOIN mentions ON blID = meIDBlabla
               WHERE users.usID = ' . $user_id . '
               OR users.usID IN (SELECT eaIDAbonne FROM estabonne WHERE eaIDUser = ' . $user_id . ')
-              OR blTexte LIKE "%@' . $user_pseudo . '%"
+              OR meIDUser = ' . $user_id . '
               ORDER BY blDate DESC, blHeure DESC';
     return mysqli_query($bd, $query);
 }
