@@ -251,6 +251,48 @@ function hl_aff_blablas(mysqli_result $data, array $blablasUser = null) {
   }
 
   /**
+   * Generate the HTML code to display the registration form
+   * @param array $content The values filled in the form (optional)
+   * @return void
+   */
+  function hl_aff_form_registration(array $content = []): void {
+    echo '<form id="registration" method="post" action="./inscription_1.php">',
+            '<p>Pour vous inscrire, merci de fournir les informations suivantes.</p>',
+            '<br>',
+            '<table>',
+              '<tr>',
+                '<td><label for="pseudo">Votre pseudo :</label></td>',
+                '<td><input type="text" name="pseudo" id="pseudo" value="', $content['pseudo'] ?? '', '"></td>',
+              '</tr>',
+              '<tr>',
+                '<td><label for="passe1">Votre mot de passe :</label></td>',
+                '<td><input type="password" name="passe1" id="passe1"></td>',
+              '</tr>',
+              '<tr>',
+                '<td><label for="passe2">Répétez le mot de passe :</label></td>',
+                '<td><input type="password" name="passe2" id="passe2"></td>',
+              '</tr>',
+              '<tr>',
+                '<td><label for="nomprenom">Nom et prénom :</label></td>',
+                '<td><input type="text" name="nomprenom" id="nomprenom" value="', $content['nomprenom'] ?? '', '"></td>',
+              '</tr>',
+              '<tr>',
+                '<td><label for="email">Votre adresse mail :</label></td>',
+                '<td><input type="email" name="email" id="email" value="', $content['email'] ?? '', '"></td>',
+              '</tr>',
+              '<tr>',
+                '<td><label for="naissance">Date de naissance :</label></td>',
+                '<td><input type="date" name="naissance" id="naissance" value="', $content['naissance'] ?? '', '"></td>',
+              '</tr>',
+              '<tr>',
+                '<td><button type="submit" name="btnSInscrire" value="S\'inscrire">S\'inscrire</button></td>',
+                '<td><button type="reset" value="Réinitialiser">Réinitialiser</button></td>',
+              '</tr>',
+            '</table>',
+          '</form>';
+  }
+
+  /**
    * Generate the HTML code to display the footer of the page
    * @return void
    */

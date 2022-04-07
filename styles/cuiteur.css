@@ -197,7 +197,7 @@ img[src*="saisie"] {
     top: 130px;
 }
 
-form button[type="submit"] {
+header form button[type="submit"] {
     background: url('../images/haut_parleur.png') no-repeat;
     cursor: pointer;
     width: 60px;
@@ -208,7 +208,7 @@ form button[type="submit"] {
     right: 5px;
 }
 
-form button[type="submit"]:hover {
+header form button[type="submit"]:hover {
     background: url('../images/haut_parleur_over.png') no-repeat;
 }
 
@@ -359,4 +359,58 @@ footer a {
 
 footer a:hover {
     opacity: 100%;
+}
+
+/******************************************
+#                                         #
+#                                         #
+#           Registration form             #
+#                                         #
+#                                         #
+******************************************/
+form table {
+    margin: 0 auto;
+    width: 500px;
+}
+
+form table input {
+    color: #7A370D;
+}
+
+form table input[type="text"], form table input[type="password"], form table input[type="email"] {
+    width: 250px;
+}
+
+/* Add image on submit button */
+#registration {
+    position: relative;
+}
+
+#registration table button {
+    background: url('../images/bouton.png') no-repeat;
+    cursor: pointer;
+    border: none;
+    position: absolute;
+    width: 140px;
+    height: 40px;
+    color: #7A370D;
+}
+
+#registration table button:hover {
+    background: url('../images/bouton_over.png') no-repeat;
+    font-weight: bold;
+    color: #3C96F1;
+}
+
+#registration table button[type="submit"] {
+    top: 250px;
+    right: 330px;
+}
+
+#registration table td {
+    padding: 7px;
+}
+
+#registration table td:first-child {
+    text-align: right;
 }
