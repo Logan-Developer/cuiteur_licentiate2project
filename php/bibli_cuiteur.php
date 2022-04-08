@@ -83,11 +83,12 @@ function hl_get_blablas_feed(mysqli $bd, int $user_id, $user_pseudo): mysqli_res
  * @param string $passe the user's password
  * @param string $dateNaissance the user's date of birth
  * @param string $dateInscription the user's date of inscription
+ * @return bool true if the user has been inserted, false otherwise
  */
-function hl_insert_user(mysqli $bd, string $nom, string $pseudo, string $mail, string $passe, string $dateNaissance, $dateInscription): void {
+function hl_insert_user(mysqli $bd, string $nom, string $pseudo, string $mail, string $passe, string $dateNaissance, $dateInscription): bool {
     $query = 'INSERT INTO users (usNom, usPseudo, usMail, usPasse, usDateNaissance, usDateInscription, usVille, usWeb, usBio)
               VALUES ("' . $nom . '", "' . $pseudo . '", "' . $mail . '", "' . $passe . '", "' . $dateNaissance . '", "' . $dateInscription . '", "", "", "")';
-    mysqli_query($bd, $query);
+    return mysqli_query($bd, $query);
 }
 
  /**

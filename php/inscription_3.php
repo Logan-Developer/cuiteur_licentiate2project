@@ -28,7 +28,7 @@ function hl_show_page(array $errors): void {
         echo '</ul>';
     }
     else {
-        echo '<p>La soumission de votre inscription est correcte !</p>';
+        echo '<p>Un nouvel utilisateur a bien été enregistré</p>';
     }
     hl_aff_fin();
 }
@@ -126,14 +126,16 @@ if (count($errors) === 0) {
     
     if (count($errors) === 0) {
         // register user in database if no errors
-        hl_insert_user($conn, 
+        if (!hl_insert_user($conn, 
             $_POST['nomprenom'], 
             $_POST['pseudo'], 
             $_POST['email'], 
             password_hash($_POST['passe1'], PASSWORD_DEFAULT),
             $birthdate->format('Ymd'),
             $today->format('Ymd')
-        );
+        )) {
+            $errors['database'] = 'Une erreur est survenue lors de l\'enregistrement de votre compte dans la base de données.';
+        }
     }
     mysqli_close($conn);
 }
