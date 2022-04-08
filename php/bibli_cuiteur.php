@@ -299,12 +299,14 @@ function hl_aff_blablas(mysqli_result $data, array $blablasUser = null) {
                 '<td><input type="email" name="email" id="email" value="', $content['email'] ?? '', '"></td>',
               '</tr>',
               '<tr>',
-                '<td><label for="naissance">Date de naissance :</label></td>',
+                '<td><label for="naissance">Votre date de naissance :</label></td>',
                 '<td><input type="date" name="naissance" id="naissance" value="', $content['naissance'] ?? '', '"></td>',
               '</tr>',
               '<tr>',
-                '<td><button type="submit" name="btnSInscrire" value="S\'inscrire">S\'inscrire</button></td>',
-                '<td><button type="reset" value="Réinitialiser">Réinitialiser</button></td>',
+                '<td colspan="2">',
+                  '<button type="submit" name="btnSInscrire" value="S\'inscrire">S\'inscrire</button>',
+                  '<button type="reset" value="Réinitialiser">Réinitialiser</button>
+                </td>',
               '</tr>',
             '</table>',
           '</form>';

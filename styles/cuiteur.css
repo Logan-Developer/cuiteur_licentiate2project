@@ -393,6 +393,7 @@ form table input[type="text"], form table input[type="password"], form table inp
     position: absolute;
     width: 140px;
     height: 40px;
+    top: 250px;
     color: #7A370D;
 }
 
@@ -403,8 +404,11 @@ form table input[type="text"], form table input[type="password"], form table inp
 }
 
 #registration table button[type="submit"] {
-    top: 250px;
-    right: 330px;
+    right: 310px;
+}
+
+#registration table button[type="reset"] {
+    right: 115px;
 }
 
 #registration table td {
