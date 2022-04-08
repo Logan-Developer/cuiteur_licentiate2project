@@ -13,6 +13,7 @@ hl_aff_debut('Inscription', 'cuiteur.css');
 hl_aff_entete(false, 'inscription');
 
 echo '<aside></aside>'; // empty aside
+
 hl_aff_form_registration();
 
 hl_aff_pied();

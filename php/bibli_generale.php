@@ -254,3 +254,19 @@ function hl_aff_erreur_exit(array $err) {
     }
     exit(1);
 }
+
+/**
+ * Check that all values submitted by form are valid
+ * @param array $required The required fields
+ * @param array $optional The optional fields
+ * @return bool True if all values are valid, false otherwise
+ */
+function hl_verify_form_submission(array $required, array $optional = []): bool {
+    $values = array_merge($required, $optional);
+    foreach ($values as $value) {
+        if (!isset($_POST[$value]) || $_POST[$value] === '') {
+            return false;
+        }
+    }
+    return true;
+}

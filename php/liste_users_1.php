@@ -17,4 +17,7 @@ $conn = hl_bd_connect();
 $users = hl_get_users($conn);
 hl_aff_users($users);
 
+mysqli_free_result($users);
+mysqli_close($conn);
+
 hl_aff_fin();

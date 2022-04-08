@@ -19,16 +19,19 @@ function hl_get_users(mysqli $bd): mysqli_result {
 }
 
 /**
- * Get pseudo of the user with the specified id
+ * Check if a user is registered, giving its pseudo
  * @param mysqli $bd the database connection
- * @param int $id the id of the user
- * @return string the pseudo of the user
+ * @param string $pseudo the user pseudo
  */
-function hl_get_user_pseudo(mysqli $bd, int $id): string {
-    $query = "SELECT `usPseudo` FROM `users` WHERE `usID` = $id";
+function hl_user_exists(mysqli $bd, string $pseudo): bool {
+    $pseudo = mysqli_real_escape_string($bd, $pseudo);
+    $query = "SELECT * FROM `users` WHERE `usPseudo` = '$pseudo'";
     $result = mysqli_query($bd, $query);
-    $row = mysqli_fetch_assoc($result);
-    return $row['usPseudo'];
+
+    $nbRows = mysqli_num_rows($result);
+    mysqli_free_result($result);
+
+    return $nbRows > 0;
 }
 
 /**
@@ -107,7 +110,6 @@ function hl_get_blablas_feed(mysqli $bd, int $user_id, $user_pseudo): mysqli_res
               '<li>Bio : ', $user['usBio'], '</li>',
            '</ul>';
       }
-      mysqli_free_result($users);
   }
 
   /**
@@ -256,7 +258,7 @@ function hl_aff_blablas(mysqli_result $data, array $blablasUser = null) {
    * @return void
    */
   function hl_aff_form_registration(array $content = []): void {
-    echo '<form id="registration" method="post" action="./inscription_1.php">',
+    echo '<form id="registration" method="post" action="./inscription_2.php">',
             '<p>Pour vous inscrire, merci de fournir les informations suivantes.</p>',
             '<br>',
             '<table>',
