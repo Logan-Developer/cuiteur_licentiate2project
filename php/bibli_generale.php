@@ -270,3 +270,15 @@ function hl_verify_form_submission(array $required, array $optional = []): bool 
     }
     return true;
 }
+
+/**
+ * Verify if the form field contains html code
+ * @param string $string String to verify
+ * @return bool True if the string contains html code, false otherwise
+ */
+function hl_contains_html_code(string $string): bool {
+    $txt = trim($string);
+    $noTags = strip_tags($txt);
+
+    return $txt !== $noTags;
+}

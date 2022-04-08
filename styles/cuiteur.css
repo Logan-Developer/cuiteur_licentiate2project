@@ -418,3 +418,14 @@ form table input[type="text"], form table input[type="password"], form table inp
 #registration table td:first-child {
     text-align: right;
 }
+
+.form-errors {
+    border: red solid;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(211, 211, 211, 0.6);
+    color: #df0000;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 5px;
+}

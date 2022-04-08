@@ -275,7 +275,7 @@ function hl_aff_blablas(mysqli_result $data, array $blablasUser = null) {
    * @return void
    */
   function hl_aff_form_registration(array $content = []): void {
-    echo '<form id="registration" method="post" action="./inscription_3.php">',
+    echo '<form id="registration" method="post" action="./inscription.php">',
             '<p>Pour vous inscrire, merci de fournir les informations suivantes.</p>',
             '<br>',
             '<table>',
@@ -333,3 +333,10 @@ function hl_aff_blablas(mysqli_result $data, array $blablasUser = null) {
           '</footer>',
         '</main>';
   }
+
+/**
+ * Redirect detected hackers to index.php
+ */
+function hl_expulse_hackers(): void {
+  header('Location: ../index.php');
+}
