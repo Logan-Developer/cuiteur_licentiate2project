@@ -282,3 +282,32 @@ function hl_contains_html_code(string $string): bool {
 
     return $txt !== $noTags;
 }
+
+/**
+ * End a session and redirect to the specified page
+ * @param string $page The page to redirect to
+ */
+function hl_session_exit(string $page) {
+    session_destroy();
+    session_unset();
+
+    // delete session cookie
+    if (ini_get("session.use_cookies")) {
+        $params = session_get_cookie_params();
+        setcookie(session_name(), '', time() - 42000,
+            $params["path"], $params["domain"],
+            $params["secure"], $params["httponly"]
+        );
+    }
+
+    header('Location: '.$page);
+    exit(0);
+}
+
+/**
+ * Verify if the user is logged in
+ * @return bool True if the user is logged in, false otherwise
+ */
+function hl_est_authentifie(): bool {
+    return isset($_SESSION['user_id']);
+}
