@@ -309,5 +309,5 @@ function hl_session_exit(string $page) {
  * @return bool True if the user is logged in, false otherwise
  */
 function hl_est_authentifie(): bool {
-    return isset($_SESSION['user_id']);
+    return isset($_SESSION['usID']);
 }

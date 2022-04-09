@@ -35,6 +35,18 @@ function hl_user_exists(mysqli $bd, string $pseudo): bool {
 }
 
 /**
+ * Retrieve the user info from the database
+ * @param mysqli $bd the database connection
+ * @param int $id the user id
+ * @return mysqli_result the user info
+ */
+function hl_get_user_info(mysqli $bd, int $id): mysqli_result {
+    $id = mysqli_real_escape_string($bd, $id);
+    $query = "SELECT * FROM `users` WHERE `usId` = '$id'";
+    return mysqli_query($bd, $query);
+}
+
+/**
  * Retrieve the list of messages posted by a user from the database
  * @param mysqli $bd the database connection
  * @param int $user_id the user id
