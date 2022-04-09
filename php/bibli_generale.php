@@ -8,9 +8,9 @@
 
  define('IS_DEV', true);
  define('DB_SERVER', 'localhost');
- define('DB_NAME', 'cuiteur_bd');
- define('DB_USER', 'cuiteur_userl');
- define('DB_PASS', 'cuiteur_passl');
+ define('DB_NAME', 'humbertl_cuiteur');
+ define('DB_USER', 'humbertl_u');
+ define('DB_PASS', 'humbertl_p');
 
  /**
   * Function to generate the HTML code to display the start of the page
