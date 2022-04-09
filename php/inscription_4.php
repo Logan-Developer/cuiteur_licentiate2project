@@ -95,9 +95,6 @@ function hl_traitement_inscription(): array {
             )) {
                 $errors['database'] = 'Une erreur est survenue lors de l\'enregistrement de votre compte dans la base de données.';
             }
-            else {
-                header('Location: protegee.php');
-            }
         }
         mysqli_close($conn);
     }
@@ -138,7 +135,13 @@ if (!isset($_POST['btnSInscrire'])) {
 else {
     // form submitted
     $errors = hl_traitement_inscription();
-    hl_aff_formulaire($errors);
+
+    if (count($errors) > 0) {
+        hl_aff_formulaire($errors);
+    }
+    else {
+        header('Location: protegee.php');
+    }
 }
 
 hl_aff_pied();
