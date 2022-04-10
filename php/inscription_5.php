@@ -1,7 +1,7 @@
 <?php
 
 /** 
- * Humbert Logan - 04/08/2022
+ * Humbert Logan - 04/09/2022
  * 
  * Script to show registration form (With errors verification + Database insertion)
  */
@@ -27,7 +27,7 @@ function hl_traitement_inscription(): array {
 
     // verify password
     if (hl_contains_html_code($_POST['passe1'])) {
-        hl_expulse_hackers();
+        hl_session_exit('../index.php');
     }
     if (strlen($_POST['passe1']) < 4 || strlen($_POST['passe1']) > 20) {
         $errors['passe'] = 'Le mot de passe doit contenir entre 4 et 20 caractères.';
@@ -38,7 +38,7 @@ function hl_traitement_inscription(): array {
 
     // verify lastname and firstname
     if (hl_contains_html_code($_POST['nomprenom'])) {
-        hl_expulse_hackers();
+        hl_session_exit('../index.php');
     }
     if (!preg_match ('/^[a-zA-Z\s]+$/', $_POST['nomprenom']) || strlen($_POST['nomprenom']) > 60) {
         $errors['nomprenom'] = 'Le nom et prénom ne doivent contenir que des lettres et ne doivent pas dépasser 60 caractères.';
@@ -85,14 +85,22 @@ function hl_traitement_inscription(): array {
         
         if (count($errors) === 0) {
             // register user in database if no errors
-            if (!hl_insert_user($conn, 
+            $id = hl_insert_user($conn, 
                 $_POST['nomprenom'], 
                 $_POST['pseudo'], 
                 $_POST['email'], 
                 password_hash($_POST['passe1'], PASSWORD_DEFAULT),
                 $birthdate->format('Ymd'),
                 $today->format('Ymd')
-            )) {
+            );
+
+            if ($id > 0) {
+                $_SESSION['usID'] = $id;
+                mysqli_close($conn);
+                header('Location: protegee.php');
+                exit();
+            }
+            else {
                 $errors['database'] = 'Une erreur est survenue lors de l\'enregistrement de votre compte dans la base de données.';
             }
         }
@@ -130,18 +138,18 @@ function hl_aff_formulaire(array $errors = []) {
     hl_aff_fin();
 }
 
+session_start();
 // form not submitted
 if (!isset($_POST['btnSInscrire'])) {
+    // if user is already logged in, redirect to home page
+    if (hl_est_authentifie()) {
+        header('Location: ../index.php');
+        exit();
+    }
     hl_aff_formulaire();
 }
 else {
     // form submitted
     $errors = hl_traitement_inscription();
-
-    if (count($errors) > 0) {
-        hl_aff_formulaire($errors);
-    }
-    else {
-        header('Location: protegee.php');
-    }
+    hl_aff_formulaire($errors);
 }

@@ -9,6 +9,4 @@
 include_once './bibli_generale.php';
 include_once './bibli_cuiteur.php';
 
-if (hl_est_authentifie()) {
-    hl_session_exit('../index.php');
-}
+hl_session_exit('../index.php');

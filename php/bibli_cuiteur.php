@@ -95,12 +95,13 @@ function hl_get_blablas_feed(mysqli $bd, int $user_id, $user_pseudo): mysqli_res
  * @param string $passe the user's password
  * @param string $dateNaissance the user's date of birth
  * @param string $dateInscription the user's date of inscription
- * @return bool true if the user has been inserted, false otherwise
+ * @return int the id of the new user (0 if an error occurred)
  */
-function hl_insert_user(mysqli $bd, string $nom, string $pseudo, string $mail, string $passe, string $dateNaissance, $dateInscription): bool {
+function hl_insert_user(mysqli $bd, string $nom, string $pseudo, string $mail, string $passe, string $dateNaissance, $dateInscription): int {
     $query = 'INSERT INTO users (usNom, usPseudo, usMail, usPasse, usDateNaissance, usDateInscription, usVille, usWeb, usBio)
               VALUES ("' . $nom . '", "' . $pseudo . '", "' . $mail . '", "' . $passe . '", "' . $dateNaissance . '", "' . $dateInscription . '", "", "", "")';
-    return mysqli_query($bd, $query);
+    mysqli_query($bd, $query);
+    return mysqli_insert_id($bd);
 }
 
  /**
@@ -287,7 +288,7 @@ function hl_aff_blablas(mysqli_result $data, array $blablasUser = null) {
    * @return void
    */
   function hl_aff_form_registration(array $content = []): void {
-    echo '<form id="registration" method="post" action="./inscription_4.php">',
+    echo '<form id="registration" method="post" action="./inscription_5.php">',
             '<p>Pour vous inscrire, merci de fournir les informations suivantes.</p>',
             '<br>',
             '<table>',
