@@ -256,6 +256,30 @@ function hl_aff_erreur_exit(array $err) {
 }
 
 /**
+ * Show a new input line with a label (for forms in a table)
+ * @param string $name The name of the input
+ * @param string $type The type of the input (text, password, date or email)
+ * @param string $label The label of the input
+ * @param string $value The value of the input (default = '')
+ * @param bool $required If the input is required (default = false)
+ * @param string $placeholder The placeholder of the input (default = '')
+ */
+function hl_aff_ligne_input(string $name, string $type, string $label, string $value = '', bool $required = false, string $placeholder = '') {
+    echo '<tr>',
+            '<td>',
+                '<label for="', $pseudo, '">', $label, ':</label>',
+            '</td>',
+            '<td>',
+                '<input type="', $type, '" name="', $name, '" id="', $name, '" value="', $value, '" placeholder="', $placeholder, '"';
+    if ($required) {
+        echo ' required';
+    }
+    echo '>',
+            '</td>',
+        '</tr>';
+}
+
+/**
  * Check that all values submitted by form are valid
  * @param array $required The required fields
  * @param array $optional The optional fields

@@ -291,32 +291,15 @@ function hl_aff_blablas(mysqli_result $data, array $blablasUser = null) {
     echo '<form id="registration" method="post" action="./inscription_5.php">',
             '<p>Pour vous inscrire, merci de fournir les informations suivantes.</p>',
             '<br>',
-            '<table>',
-              '<tr>',
-                '<td><label for="pseudo">Votre pseudo :</label></td>',
-                '<td><input type="text" name="pseudo" id="pseudo" value="', $content['pseudo'] ?? '', '"></td>',
-              '</tr>',
-              '<tr>',
-                '<td><label for="passe1">Votre mot de passe :</label></td>',
-                '<td><input type="password" name="passe1" id="passe1"></td>',
-              '</tr>',
-              '<tr>',
-                '<td><label for="passe2">Répétez le mot de passe :</label></td>',
-                '<td><input type="password" name="passe2" id="passe2"></td>',
-              '</tr>',
-              '<tr>',
-                '<td><label for="nomprenom">Nom et prénom :</label></td>',
-                '<td><input type="text" name="nomprenom" id="nomprenom" value="', $content['nomprenom'] ?? '', '"></td>',
-              '</tr>',
-              '<tr>',
-                '<td><label for="email">Votre adresse mail :</label></td>',
-                '<td><input type="email" name="email" id="email" value="', $content['email'] ?? '', '"></td>',
-              '</tr>',
-              '<tr>',
-                '<td><label for="naissance">Votre date de naissance :</label></td>',
-                '<td><input type="date" name="naissance" id="naissance" value="', $content['naissance'] ?? '', '"></td>',
-              '</tr>',
-              '<tr>',
+            '<table>';
+              hl_aff_ligne_input('pseudo', 'text', 'Votre pseudo', $content['pseudo'] ?? '', true);
+              hl_aff_ligne_input('passe1', 'password', 'Votre mot de passe', '', true);
+              hl_aff_ligne_input('passe2', 'password', 'Répétez votre mot de passe', '', true);
+              hl_aff_ligne_input('nomprenom', 'text', 'Nom et prénom', $content['nomprenom'] ?? '', true);
+              hl_aff_ligne_input('email', 'email', 'Votre adresse mail', $content['email'] ?? '', true);
+              hl_aff_ligne_input('naissance', 'date', 'Votre date de naissance', $content['naissance'] ?? '', true);
+
+    echo      '<tr>',
                 '<td colspan="2">',
                   '<button type="submit" name="btnSInscrire" value="S\'inscrire">S\'inscrire</button>',
                   '<button type="reset" value="Réinitialiser">Réinitialiser</button>
