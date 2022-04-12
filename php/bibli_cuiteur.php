@@ -346,10 +346,3 @@ function hl_aff_blablas(mysqli_result $data, array $blablasUser = null) {
           '</footer>',
         '</main>';
   }
-
-/**
- * Redirect detected hackers to index.php
- */
-function hl_expulse_hackers(): void {
-  header('Location: ../index.php');
-}

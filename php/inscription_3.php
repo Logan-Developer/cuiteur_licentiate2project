@@ -33,6 +33,14 @@ function hl_show_page(array $errors): void {
     hl_aff_fin();
 }
 
+/**
+ * Redirect detected hackers to index.php
+ */
+function hl_expulse_hackers(): void {
+    header('Location: ../index.php');
+}
+
+
 $errors = [];
 
 if (!hl_verify_form_submission(array('pseudo', 'passe1', 'passe2', 'nomprenom', 'email', 'naissance', 'btnSInscrire'))) {

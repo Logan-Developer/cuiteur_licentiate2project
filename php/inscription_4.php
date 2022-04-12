@@ -10,6 +10,13 @@ include_once './bibli_generale.php';
 include_once './bibli_cuiteur.php';
 
 /**
+ * Redirect detected hackers to index.php
+ */
+function hl_expulse_hackers(): void {
+    header('Location: ../index.php');
+}
+
+/**
  * Verification of the submitted data
  * @return array The eventual errors detected
  */
