@@ -32,8 +32,8 @@ echo    '<li>usID : ', $userInfo['usID'], '</li>',
         '<li>usPseudo : ', $userInfo['usPseudo'], '</li>',
         '<li>usPasse : ', $userInfo['usPasse'], '</li>',
         '<li>usBio : ', $userInfo['usBio'], '</li>',
-        '<li>usDateNaissance : ', $userInfo['usDateNaissance'], '</li>',
-        '<li>usDateInscription : ', $userInfo['usDateInscription'], '</li>',
+        '<li>usDateNaissance : ', hl_date_to_french_format($userInfo['usDateNaissance']), '</li>',
+        '<li>usDateInscription : ', hl_date_to_french_format($userInfo['usDateInscription']), '</li>',
         '<li>usAvecPhoto : ', $userInfo['usAvecPhoto'], '</li>',
     '<ul>';
 
